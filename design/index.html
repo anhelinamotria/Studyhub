@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StudyHub — ідея сайту</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Segoe UI,Arial,sans-serif;color:#1f2430;background:#f6f7fb;line-height:1.5}
+  header{display:flex;justify-content:space-between;align-items:center;padding:18px 6vw;background:#fff;border-bottom:1px solid #e4e6ef}
+  .logo{font-weight:700;font-size:22px;color:#3b5bdb}
+  nav a{margin-left:22px;color:#1f2430;text-decoration:none}
+  .hero{padding:70px 6vw;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+  .hero h1{font-size:42px;line-height:1.15;margin-bottom:16px}
+  .hero p{font-size:18px;color:#4a5160;margin-bottom:26px}
+  .btn{display:inline-block;background:#3b5bdb;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;font-weight:600}
+  .card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 6px 24px rgba(30,40,90,.08)}
+  .card h3{margin-bottom:10px}
+  .task{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eef0f5;font-size:15px}
+  .tag{font-size:12px;padding:2px 8px;border-radius:10px;background:#e7ecff;color:#3b5bdb}
+  .tag.r{background:#ffe8e8;color:#c92a2a}
+  .features{padding:20px 6vw 70px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .features h4{margin-bottom:6px;font-size:18px}
+  footer{text-align:center;padding:22px;color:#7a8090;font-size:14px}
+  @media(max-width:760px){.hero,.features{grid-template-columns:1fr}.hero h1{font-size:32px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">StudyHub</div>
+  <nav><a href="schedule.html">Розклад</a><a href="task.html">Дедлайни</a><a href="materials.html">Матеріали</a><a href="login.html">Увійти</a></nav>
+</header>
+<section class="hero">
+  <div>
+    <h1>Усі лабки, дедлайни й розклад — в одному місці</h1>
+    <p>StudyHub допомагає студентам УжНУ не губитися в навчанні: розклад пар, нагадування про здачу робіт і спільні конспекти для групи.</p>
+    <a class="btn" href="register.html">Спробувати безкоштовно</a>
+  </div>
+  <div class="card">
+    <h3>Найближчі дедлайни</h3>
+    <div class="task">Лаб. 2 — Веб-технології <span class="tag r">завтра</span></div>
+    <div class="task">Лаб. 4 — Комп'ютерні мережі <span class="tag">3 дні</span></div>
+    <div class="task">Реферат — Філософія <span class="tag">5 днів</span></div>
+    <div class="task">Лаб. 5 — Java <span class="tag">7 днів</span></div>
+  </div>
+</section>
+<section class="features">
+  <div class="card"><h4>📅 Розклад</h4><p>Актуальний розклад групи з чисельником і знаменником.</p></div>
+  <div class="card"><h4>⏰ Нагадування</h4><p>Сповіщення за кілька днів до здачі лабораторних і заліків.</p></div>
+  <div class="card"><h4>📚 Матеріали</h4><p>Спільні конспекти, методички та корисні посилання від одногрупників.</p></div>
+</section>
+<footer>© 2026 StudyHub · Мотря Ангеліна</footer>
+</body>
+</html>
