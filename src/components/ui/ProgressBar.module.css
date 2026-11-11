@@ -1,0 +1,13 @@
+.bar {
+  height: 8px;
+  margin-top: 6px;
+  background: var(--color-line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  background: var(--color-primary);
+}

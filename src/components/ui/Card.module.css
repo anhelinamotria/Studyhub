@@ -1,0 +1,21 @@
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.action {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-primary);
+}

@@ -6,64 +6,17 @@ export const subjects = [
 ];
 
 export const todayLessons = [
-  {
-    id: 1,
-    time: '9:40',
-    name: 'Веб-технології',
-    type: 'Лабораторна',
-    room: '214',
-    tag: 'чисельник',
-  },
-  {
-    id: 2,
-    time: '11:20',
-    name: "Об'єктно-орієнтоване програмування (Java)",
-    type: 'Лекція',
-    room: '301',
-    tag: 'онлайн',
-  },
+  { id: 1, time: '9:40', name: 'Веб-технології', type: 'Лабораторна', room: '214', tag: 'чисельник' },
+  { id: 2, time: '11:20', name: "Об'єктно-орієнтоване програмування (Java)", type: 'Лекція', room: '301', tag: 'онлайн' },
   { id: 3, time: '13:20', name: 'Філософія', type: 'Семінар', room: '105', tag: 'презентація' },
 ];
 
 export const weekSchedule = [
-  {
-    day: 'Пн',
-    lessons: [
-      { time: '9:40', name: 'Веб-технології', room: '214', color: 'c1' },
-      { time: '11:20', name: 'Java (ООП)', room: '301', color: 'c2' },
-      { time: '13:20', name: 'Філософія', room: '105', color: 'c3' },
-    ],
-  },
-  {
-    day: 'Вт',
-    lessons: [
-      { time: '8:00', name: 'Java', room: '302', color: 'c2' },
-      { time: '9:40', name: 'Математичний аналіз', room: '401', color: 'c4' },
-      { time: '11:20', name: 'Дискретна математика', room: '405', color: 'c4' },
-    ],
-  },
-  {
-    day: 'Ср',
-    lessons: [
-      { time: '9:40', name: 'Java', room: '301', color: 'c2' },
-      { time: '13:20', name: 'Веб-технології', room: '214', color: 'c1' },
-    ],
-  },
-  {
-    day: 'Чт',
-    lessons: [
-      { time: '8:00', name: 'Мережі', room: '214', color: 'c1' },
-      { time: '11:20', name: 'Англійська', room: '112', color: 'c3' },
-      { time: '13:20', name: 'Філософія', room: '105', color: 'c3' },
-    ],
-  },
-  {
-    day: 'Пт',
-    lessons: [
-      { time: '9:40', name: 'Мережі', room: '210', color: 'c1' },
-      { time: '11:20', name: 'Мат. аналіз', room: '401', color: 'c4' },
-    ],
-  },
+  { day: 'Пн', lessons: [{ time: '9:40', name: 'Веб-технології', room: '214', color: 'c1' }, { time: '11:20', name: 'Java (ООП)', room: '301', color: 'c2' }, { time: '13:20', name: 'Філософія', room: '105', color: 'c3' }] },
+  { day: 'Вт', lessons: [{ time: '8:00', name: 'Java', room: '302', color: 'c2' }, { time: '9:40', name: 'Математичний аналіз', room: '401', color: 'c4' }, { time: '11:20', name: 'Дискретна математика', room: '405', color: 'c4' }] },
+  { day: 'Ср', lessons: [{ time: '9:40', name: 'Java', room: '301', color: 'c2' }, { time: '13:20', name: 'Веб-технології', room: '214', color: 'c1' }] },
+  { day: 'Чт', lessons: [{ time: '8:00', name: 'Мережі', room: '214', color: 'c1' }, { time: '11:20', name: 'Англійська', room: '112', color: 'c3' }, { time: '13:20', name: 'Філософія', room: '105', color: 'c3' }] },
+  { day: 'Пт', lessons: [{ time: '9:40', name: 'Мережі', room: '210', color: 'c1' }, { time: '11:20', name: 'Мат. аналіз', room: '401', color: 'c4' }] },
 ];
 
 export const deadlines = [
@@ -74,28 +27,7 @@ export const deadlines = [
 ];
 
 export const materials = [
-  {
-    id: 1,
-    icon: '📄',
-    title: 'Конспект лекції 5 — HTTP і DNS',
-    subject: 'Веб-технології',
-    author: 'Олена К.',
-    likes: 12,
-  },
-  {
-    id: 2,
-    icon: '📊',
-    title: 'Методичка до лаб. 4 — Cisco Packet Tracer',
-    subject: "Комп'ютерні мережі",
-    author: 'викладач',
-    likes: 8,
-  },
-  {
-    id: 3,
-    icon: '🔗',
-    title: 'Як оформити звіт з лабораторної',
-    subject: 'Загальне',
-    author: 'староста',
-    likes: 20,
-  },
+  { id: 1, icon: '📄', title: 'Конспект лекції 5 — HTTP і DNS', subject: 'Веб-технології', author: 'Олена К.', likes: 12 },
+  { id: 2, icon: '📊', title: 'Методичка до лаб. 4 — Cisco Packet Tracer', subject: "Комп'ютерні мережі", author: 'викладач', likes: 8 },
+  { id: 3, icon: '🔗', title: 'Як оформити звіт з лабораторної', subject: 'Загальне', author: 'староста', likes: 20 },
 ];

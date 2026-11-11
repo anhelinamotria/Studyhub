@@ -1,4 +1,11 @@
+import styles from './Tag.module.css';
+
 // variant: '' (синій) | 'r' (червоний) | 'y' (жовтий) | 'g' (зелений)
 export default function Tag({ variant = '', children }) {
-  return <span className={variant ? `tag ${variant}` : 'tag'}>{children}</span>;
+  const className = variant ? `${styles.tag} ${styles[variant]}` : styles.tag;
+  return (
+    <span className={className} data-variant={variant || 'default'}>
+      {children}
+    </span>
+  );
 }

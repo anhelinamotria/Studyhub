@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import AuthTabs from '../components/auth/AuthTabs.jsx';
 import Button from '../components/ui/Button.jsx';
+import FormField from '../components/ui/FormField.jsx';
 import { useAuth } from '../features/auth/useAuth.js';
+import styles from './AuthPage.module.css';
 
 export default function RegisterPage() {
   const { register } = useAuth();
@@ -24,39 +27,30 @@ export default function RegisterPage() {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      <h1>Створити акаунт</h1>
-      <p className="muted">Це займе менше хвилини</p>
-      <div className="tabs">
-        <Link to="/login">Вхід</Link>
-        <Link className="on" to="/register">
-          Реєстрація
-        </Link>
-      </div>
-      <label htmlFor="name">Ім&apos;я та прізвище</label>
-      <input id="name" className="inp" value={form.name} onChange={update('name')} />
-      <label htmlFor="reg-email">Університетська пошта</label>
-      <input
+      <h1 className={styles.title}>Створити акаунт</h1>
+      <p className={styles.subtitle}>Це займе менше хвилини</p>
+      <AuthTabs />
+      <FormField id="name" label="Ім'я та прізвище" value={form.name} onChange={update('name')} />
+      <FormField
         id="reg-email"
-        className="inp"
+        label="Університетська пошта"
         type="email"
         value={form.email}
         onChange={update('email')}
       />
-      <label htmlFor="group">Факультет і група</label>
-      <select id="group" className="inp">
+      <FormField id="group" label="Факультет і група" as="select">
         <option>Факультет інформаційних технологій · ІПЗ-1</option>
-      </select>
-      <label htmlFor="reg-password">Пароль</label>
-      <input
+      </FormField>
+      <FormField
         id="reg-password"
-        className="inp"
+        label="Пароль"
         type="password"
         placeholder="мінімум 8 символів"
         value={form.password}
         onChange={update('password')}
       />
-      {error && <p className="error">{error}</p>}
-      <div className="line" />
+      {error && <p className={styles.error}>{error}</p>}
+      <div className={styles.row} />
       <Button type="submit" full>
         Зареєструватися
       </Button>

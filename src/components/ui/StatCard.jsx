@@ -1,13 +1,12 @@
 import Card from './Card.jsx';
+import styles from './StatCard.module.css';
 
 export default function StatCard({ label, value, hint, accent, children }) {
   return (
     <Card>
-      <div className="muted">{label}</div>
-      <div className="stat" style={accent ? { color: accent } : undefined}>
-        {value}
-      </div>
-      {hint && <div className="muted">{hint}</div>}
+      <div className={styles.label}>{label}</div>
+      <div className={`${styles.value} ${accent ? styles[accent] : ''}`}>{value}</div>
+      {hint && <div className={styles.label}>{hint}</div>}
       {children}
     </Card>
   );

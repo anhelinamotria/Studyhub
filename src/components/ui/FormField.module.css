@@ -1,0 +1,25 @@
+.field {
+  margin-top: 14px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.control {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #d6dbe8;
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 15px;
+}
+
+.control:focus {
+  outline: 2px solid var(--color-primary);
+  border-color: var(--color-primary);
+}

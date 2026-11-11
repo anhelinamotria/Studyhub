@@ -1,19 +1,20 @@
 import Card from '../components/ui/Card.jsx';
+import Grid from '../components/ui/Grid.jsx';
+import PageHeader from '../components/ui/PageHeader.jsx';
 import ProgressBar from '../components/ui/ProgressBar.jsx';
 import Tag from '../components/ui/Tag.jsx';
 import { useFetch } from '../hooks/useFetch.js';
 import { api } from '../services/api.js';
 import { getDeadlineStatus } from '../utils/deadline.js';
+import styles from './DeadlinesPage.module.css';
 
 export default function DeadlinesPage() {
   const { data: deadlines } = useFetch(api.getDeadlines);
 
   return (
     <>
-      <div className="top">
-        <h1>Дедлайни</h1>
-      </div>
-      <div className="grid g2">
+      <PageHeader title="Дедлайни" subtitle="Лабораторні, реферати та інші роботи" />
+      <Grid cols={2}>
         {deadlines?.map((d) => {
           const status = getDeadlineStatus(d.dueDate);
           return (
@@ -21,16 +22,15 @@ export default function DeadlinesPage() {
               key={d.id}
               title={d.title}
               action={<Tag variant={status.variant}>{status.label}</Tag>}
+              data-cy="deadline-card"
             >
-              <p className="muted">Здати до {new Date(d.dueDate).toLocaleDateString('uk-UA')}</p>
+              <p className={styles.due}>Здати до {new Date(d.dueDate).toLocaleDateString('uk-UA')}</p>
               <ProgressBar value={d.progress} />
-              <p className="muted" style={{ marginTop: 6 }}>
-                Виконано {d.progress}%
-              </p>
+              <p className={styles.progress}>Виконано {d.progress}%</p>
             </Card>
           );
         })}
-      </div>
+      </Grid>
     </>
   );
 }

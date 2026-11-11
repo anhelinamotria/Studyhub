@@ -1,0 +1,13 @@
+.label {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.value {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.danger {
+  color: var(--color-danger);
+}

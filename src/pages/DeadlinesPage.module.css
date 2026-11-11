@@ -1,0 +1,9 @@
+.due,
+.progress {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.progress {
+  margin-top: 6px;
+}
