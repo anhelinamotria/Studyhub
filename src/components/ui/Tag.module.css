@@ -1,0 +1,23 @@
+.tag {
+  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 10px;
+  white-space: nowrap;
+  background: var(--color-info-bg);
+  color: var(--color-primary);
+}
+
+.r {
+  background: var(--color-danger-bg);
+  color: var(--color-danger);
+}
+
+.y {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.g {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}

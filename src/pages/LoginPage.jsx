@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import AuthTabs from '../components/auth/AuthTabs.jsx';
 import Button from '../components/ui/Button.jsx';
+import FormField from '../components/ui/FormField.jsx';
 import { useAuth } from '../features/auth/useAuth.js';
+import styles from './AuthPage.module.css';
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -24,28 +27,21 @@ export default function LoginPage() {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      <h1>З поверненням 👋</h1>
-      <p className="muted">Увійди, щоб побачити свій розклад і дедлайни</p>
-      <div className="tabs">
-        <Link className="on" to="/login">
-          Вхід
-        </Link>
-        <Link to="/register">Реєстрація</Link>
-      </div>
-      <label htmlFor="email">Університетська пошта</label>
-      <input
+      <h1 className={styles.title}>З поверненням 👋</h1>
+      <p className={styles.subtitle}>Увійди, щоб побачити свій розклад і дедлайни</p>
+      <AuthTabs />
+      <FormField
         id="email"
-        className="inp"
+        label="Університетська пошта"
         type="email"
         placeholder="name.surname@student.uzhnu.edu.ua"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         data-cy="email"
       />
-      <label htmlFor="password">Пароль</label>
-      <input
+      <FormField
         id="password"
-        className="inp"
+        label="Пароль"
         type="password"
         placeholder="••••••••"
         value={password}
@@ -53,13 +49,15 @@ export default function LoginPage() {
         data-cy="password"
       />
       {error && (
-        <p className="error" data-cy="error">
+        <p className={styles.error} data-cy="error">
           {error}
         </p>
       )}
-      <div className="line">
+      <div className={styles.row}>
         <span />
-        <a href="#forgot">Забули пароль?</a>
+        <a className={styles.link} href="#forgot">
+          Забули пароль?
+        </a>
       </div>
       <Button type="submit" full data-cy="submit">
         Увійти

@@ -1,4 +1,6 @@
 import Card from '../components/ui/Card.jsx';
+import Grid from '../components/ui/Grid.jsx';
+import PageHeader from '../components/ui/PageHeader.jsx';
 import StatCard from '../components/ui/StatCard.jsx';
 import ProgressBar from '../components/ui/ProgressBar.jsx';
 import DeadlineItem from '../components/DeadlineItem.jsx';
@@ -7,46 +9,45 @@ import { useAuth } from '../features/auth/useAuth.js';
 import { useFetch } from '../hooks/useFetch.js';
 import { api } from '../services/api.js';
 import { getWeekType } from '../utils/week.js';
+import styles from './DashboardPage.module.css';
 
 export default function DashboardPage() {
   const { user } = useAuth();
   const lessons = useFetch(api.getTodayLessons);
   const deadlines = useFetch(api.getDeadlines);
   const today = new Date();
+  const date = today.toLocaleDateString('uk-UA', { weekday: 'long', day: 'numeric', month: 'long' });
 
   return (
     <>
-      <div className="top">
-        <div>
-          <h1 data-cy="greeting">Добрий день, {user?.name} 👋</h1>
-          <div className="sub">
-            {today.toLocaleDateString('uk-UA', { weekday: 'long', day: 'numeric', month: 'long' })}{' '}
-            · {getWeekType(today)}
-          </div>
-        </div>
-      </div>
+      <PageHeader
+        title={`Добрий день, ${user?.name} 👋`}
+        subtitle={`${date} · ${getWeekType(today)}`}
+        data-cy="greeting"
+      />
 
-      <div className="grid g3" style={{ marginBottom: 18 }}>
+      <Grid cols={3}>
         <StatCard label="Пар сьогодні" value={lessons.data?.length ?? '…'} />
-        <StatCard label="Дедлайни" value={deadlines.data?.length ?? '…'} accent="#c92a2a" />
+        <StatCard label="Дедлайни" value={deadlines.data?.length ?? '…'} accent="danger" />
         <StatCard label="Здано лабораторних" value="11 / 16">
           <ProgressBar value={69} />
         </StatCard>
-      </div>
+      </Grid>
 
-      <div className="grid g2">
+      <Grid cols="wide">
         <Card title="Сьогодні">
-          {lessons.loading && <p className="muted">Завантаження…</p>}
+          {lessons.loading && <p className={styles.loading}>Завантаження…</p>}
           {lessons.data?.map((lesson) => (
             <LessonRow key={lesson.id} {...lesson} />
           ))}
         </Card>
         <Card title="Найближчі дедлайни">
+          {deadlines.loading && <p className={styles.loading}>Завантаження…</p>}
           {deadlines.data?.map((d) => (
             <DeadlineItem key={d.id} title={d.title} dueDate={d.dueDate} />
           ))}
         </Card>
-      </div>
+      </Grid>
     </>
   );
 }

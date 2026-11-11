@@ -1,7 +1,10 @@
 import Card from '../components/ui/Card.jsx';
-import Tag from '../components/ui/Tag.jsx';
+import Grid from '../components/ui/Grid.jsx';
+import PageHeader from '../components/ui/PageHeader.jsx';
+import MaterialItem from '../components/materials/MaterialItem.jsx';
 import { useFetch } from '../hooks/useFetch.js';
 import { api } from '../services/api.js';
+import styles from './MaterialsPage.module.css';
 
 export default function MaterialsPage() {
   const { data: subjects } = useFetch(api.getSubjects);
@@ -9,34 +12,19 @@ export default function MaterialsPage() {
 
   return (
     <>
-      <div className="top">
-        <div>
-          <h1>Матеріали групи</h1>
-          <div className="sub">Конспекти, методички та корисні посилання</div>
-        </div>
-      </div>
-      <div className="grid g3" style={{ marginBottom: 18 }}>
+      <PageHeader title="Матеріали групи" subtitle="Конспекти, методички та корисні посилання" />
+      <Grid cols={3}>
         {subjects?.map((s) => (
           <Card key={s.id} title={`${s.icon} ${s.name}`}>
-            <div className="muted">
+            <div className={styles.meta}>
               {s.files} файлів · оновлено {s.updated}
             </div>
           </Card>
         ))}
-      </div>
+      </Grid>
       <Card title="Нещодавно додані">
         {materials?.map((m) => (
-          <div className="file" key={m.id}>
-            <span className="ico">{m.icon}</span>
-            <span style={{ flex: 1 }}>
-              <b>{m.title}</b>
-              <br />
-              <span className="muted">
-                {m.subject} · додав(ла) {m.author}
-              </span>
-            </span>
-            <Tag variant="g">👍 {m.likes}</Tag>
-          </div>
+          <MaterialItem key={m.id} {...m} />
         ))}
       </Card>
     </>

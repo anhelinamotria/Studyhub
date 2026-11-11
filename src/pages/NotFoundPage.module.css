@@ -1,0 +1,14 @@
+.page {
+  padding-top: 120px;
+  text-align: center;
+}
+
+.code {
+  font-size: 64px;
+  color: var(--color-primary);
+}
+
+.text {
+  margin-bottom: 20px;
+  color: var(--color-muted);
+}

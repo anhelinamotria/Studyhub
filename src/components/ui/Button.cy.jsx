@@ -1,3 +1,4 @@
+import { MemoryRouter } from 'react-router-dom';
 import Button from './Button.jsx';
 
 describe('<Button />', () => {
@@ -8,8 +9,17 @@ describe('<Button />', () => {
     cy.get('@click').should('have.been.calledOnce');
   });
 
-  it('має стиль outline', () => {
+  it('має варіант outline', () => {
     cy.mount(<Button variant="outline">Скасувати</Button>);
-    cy.get('button').should('have.class', 'btn').and('have.class', 'o');
+    cy.get('button').should('have.attr', 'data-variant', 'outline');
+  });
+
+  it('рендериться як посилання, якщо передано to', () => {
+    cy.mount(
+      <MemoryRouter>
+        <Button to="/register">Реєстрація</Button>
+      </MemoryRouter>,
+    );
+    cy.contains('a', 'Реєстрація').should('have.attr', 'href', '/register');
   });
 });
