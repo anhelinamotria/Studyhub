@@ -1,59 +1,144 @@
-# StudyHub — дизайн веб-застосунку
+# StudyHub
 
-**StudyHub** — помічник студента, який збирає розклад пар, дедлайни лабораторних, оголошення старости та матеріали групи в одному місці.
+**StudyHub** — веб-застосунок-помічник студента: розклад пар, дедлайни лабораторних, оголошення старости та матеріали групи в одному місці.
 
-> Лабораторна робота 2 «Власна ідея веб-додатку. Ч2 — дизайн» (Веб-технології, УжНУ).
-> Виконала: Мотря Ангеліна Васильівна, ІПЗ, І курс.
-> Цей репозиторій містить лише **дизайн**; реалізацію на React буде виконано до кінця семестру.
+Автор: Мотря Ангеліна Васильівна, ІПЗ, І курс, УжНУ · Дисципліна «Веб-технології та веб-дизайн».
 
-## Проблема
-Студенти користуються одразу кількома сервісами: Moodle (завдання), таблиця/фото розкладу, Telegram-чат групи (оголошення), нотатки в телефоні (дедлайни). Інформація розпорошена, важливі повідомлення губляться.
+| Лабораторна | Що зроблено                                          |
+| ----------- | ---------------------------------------------------- |
+| 1           | Аналіз аналогів, ідея, мокапи                        |
+| 2           | Фінальний дизайн (`design/`, `screenshots/`)         |
+| 3           | Каркас React-проєкту, інструменти якості коду, тести |
 
-## Рішення та ключові функції
-- 📅 **Розклад групи** з автоматичним чисельником/знаменником і сповіщеннями про зміни
-- ⏰ **Дедлайни** з чек-листом етапів, нагадуваннями та переходом до завдання в Moodle
-- 📚 **Матеріали групи** — спільні конспекти, методички, посилання
-- 📣 **Оголошення** від старости й викладачів окремо від чату
-- 📱 **Мобільна версія** (адаптивний дизайн)
+## Стек
 
-## Сторінки дизайну
-| Сторінка | Файл |
-|---|---|
-| Лендінг | `design/index.html` |
-| Вхід (авторизація) | `design/login.html` |
-| Реєстрація | `design/register.html` |
-| Головна сторінка студента | `design/dashboard.html` |
-| Розклад | `design/schedule.html` |
-| Дедлайн | `design/task.html` |
-| Матеріали групи | `design/materials.html` |
-| Мобільна версія | `design/mobile.html` |
-| Дизайн-система | `design/styleguide.html` |
+- **React 19** + **React Router 7** — інтерфейс і маршрутизація
+- **Vite 6** — збирач (bundler) і dev-сервер
+- **ESLint 9** (flat config) — статичний аналіз коду
+- **Prettier 3** — автоматичне форматування
+- **Husky 9** + **lint-staged** — git-hooks: перевірка коду перед комітом і пушем
+- **Cypress 14** — unit / компонентні тести (Component Testing) та e2e-тести
 
-## Скріншоти
-| Вхід | Головна |
-|---|---|
-| ![Вхід](screenshots/login.png) | ![Головна](screenshots/dashboard.png) |
+## Запуск
 
-| Розклад | Дедлайн |
-|---|---|
-| ![Розклад](screenshots/schedule.png) | ![Дедлайн](screenshots/task.png) |
+```bash
+npm install          # встановити залежності (+ активувати git-hooks)
+npm run dev          # http://localhost:5173
+npm run lint         # ESLint
+npm run format       # Prettier
+npm run test:unit    # компонентні та unit-тести (Cypress)
+npm run test:e2e     # e2e-тести (scripts/e2e.js сам запускає і зупиняє dev-сервер)
+npm run build        # production-збірка в dist/
+```
 
-| Матеріали | Дизайн-система |
-|---|---|
-| ![Матеріали](screenshots/materials.png) | ![Дизайн-система](screenshots/styleguide.png) |
+Тестовий вхід: будь-яка пошта `@student.uzhnu.edu.ua` і пароль від 8 символів.
 
-Лендінг: ![Лендінг](screenshots/index.png)
+## Git-hooks
 
-Мобільна версія: <img src="screenshots/mobile.png" width="260"> <img src="screenshots/login-mobile.png" width="260">
+- **pre-commit** → `lint-staged`: ESLint (--fix) і Prettier лише для змінених файлів
+- **pre-push** → `npm run lint`: код із помилками не потрапить на GitHub
 
-## Дизайн-система
-- Основний колір `#3B5BDB`, темний `#1E2A5A`, фон `#F4F6FB`, текст `#1F2430`
-- Статуси дедлайнів: червоний `#C92A2A` → жовтий `#E0A100` → синій → зелений `#2B8A3E`
-- Шрифт без засічок (Segoe UI / Inter): H1 32px, H2 24px, текст 15px
-- Картки з радіусом 12px і м'якою тінню; на екранах < 820px меню ховається, картки стають в одну колонку
+## Структура
 
-## Як переглянути
-Відкрийте `design/index.html` у браузері (або у VS Code: правий клік → **Open with Live Server**). Сторінки пов'язані між собою: Лендінг → Увійти → Головна → Розклад / Дедлайни / Матеріали.
+```
+studyhub/
+├── .husky/
+│   ├── pre-commit
+│   └── pre-push
+├── cypress/
+│   ├── e2e/
+│   │   ├── auth.cy.js
+│   │   └── navigation.cy.js
+│   ├── fixtures/
+│   │   └── user.json
+│   └── support/
+│       ├── commands.js
+│       ├── component-index.html
+│       ├── component.js
+│       └── e2e.js
+├── design/
+├── public/
+│   └── favicon.svg
+├── screenshots/
+├── scripts/
+│   └── e2e.js
+├── src/
+│   ├── app/
+│   │   ├── App.jsx
+│   │   └── AppRoutes.jsx
+│   ├── components/
+│   │   ├── schedule/
+│   │   │   └── LessonRow.jsx
+│   │   ├── ui/
+│   │   │   ├── Button.cy.jsx
+│   │   │   ├── Button.jsx
+│   │   │   ├── Card.jsx
+│   │   │   ├── ProgressBar.cy.jsx
+│   │   │   ├── ProgressBar.jsx
+│   │   │   ├── StatCard.jsx
+│   │   │   ├── Tag.cy.jsx
+│   │   │   └── Tag.jsx
+│   │   ├── DeadlineItem.cy.jsx
+│   │   ├── DeadlineItem.jsx
+│   │   └── Sidebar.jsx
+│   ├── features/
+│   │   └── auth/
+│   │       ├── AuthContext.js
+│   │       ├── AuthProvider.jsx
+│   │       ├── ProtectedRoute.jsx
+│   │       └── useAuth.js
+│   ├── hooks/
+│   │   └── useFetch.js
+│   ├── layouts/
+│   │   ├── AppLayout.jsx
+│   │   └── AuthLayout.jsx
+│   ├── pages/
+│   │   ├── DashboardPage.jsx
+│   │   ├── DeadlinesPage.jsx
+│   │   ├── LandingPage.jsx
+│   │   ├── LoginPage.jsx
+│   │   ├── MaterialsPage.jsx
+│   │   ├── NotFoundPage.jsx
+│   │   ├── RegisterPage.jsx
+│   │   └── SchedulePage.jsx
+│   ├── services/
+│   │   ├── api.js
+│   │   ├── authService.js
+│   │   └── mockData.js
+│   ├── styles/
+│   │   └── global.css
+│   ├── utils/
+│   │   ├── deadline.js
+│   │   ├── utils.cy.js
+│   │   ├── validation.js
+│   │   └── week.js
+│   └── main.jsx
+├── .editorconfig
+├── .gitignore
+├── .prettierignore
+├── .prettierrc
+├── cypress.config.js
+├── eslint.config.js
+├── index.html
+├── package.json
+└── vite.config.js
+```
 
-## Плани
-Реалізація інтерфейсу на **React** (до кінця семестру), інтеграція з Moodle API, push-сповіщення.
+## Архітектура
+
+Шарова структура з виділенням функціональних модулів (features):
+
+| Шар           | Відповідальність                                                                       |
+| ------------- | -------------------------------------------------------------------------------------- |
+| `app/`        | точка складання: провайдери, маршрути                                                  |
+| `pages/`      | сторінки (по одній на маршрут), лише компонують інші шари                              |
+| `layouts/`    | каркаси сторінок: з боковим меню / для авторизації                                     |
+| `components/` | перевикористовувані компоненти; `ui/` — базові елементи дизайн-системи                 |
+| `features/`   | закінчена функціональність з власним станом (`auth`: контекст, хук, захищений маршрут) |
+| `hooks/`      | загальні React-хуки                                                                    |
+| `services/`   | робота з даними (зараз mock, далі — бекенд і Moodle API)                               |
+| `utils/`      | чисті функції без React — легко покриваються unit-тестами                              |
+| `styles/`     | глобальні стилі та токени дизайн-системи                                               |
+
+Залежності йдуть лише «згори вниз»: `pages → features/components → hooks/services → utils`.
+Компонентні тести лежать поруч із компонентом (`*.cy.jsx`), e2e — у `cypress/e2e`.
